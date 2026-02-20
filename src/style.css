@@ -1,0 +1,1044 @@
+:root {
+    --primary-purple: #8B5A96;
+    --bg-color: #FFFFFF;
+    --text-color: #333333;
+    --border-color: #8B5A96;
+    --fill-color-light: #F2E6F5;
+    --heart-color: #793D87;
+
+    --font-main: 'Fredoka', sans-serif;
+    --font-label: 'Nunito', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: #f0f0f0;
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.sheet-container {
+    width: 100%;
+    max-width: 1100px;
+    /* Increased to fit everything with padding */
+    box-sizing: border-box;
+    /* ensures symmetry */
+    background-color: var(--bg-color);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 40px;
+    /* Cloud-like border effect can be complex with CSS alone, keeping it simple for now */
+}
+
+/* Typography & Inputs */
+label {
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--primary-purple);
+    text-transform: uppercase;
+    display: block;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+.formula-box input {
+    width: 100%;
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-family: var(--font-label);
+    font-size: 16px;
+    outline: none;
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    border-color: var(--heart-color);
+    box-shadow: 0 0 5px rgba(139, 90, 150, 0.3);
+}
+
+/* Top Header Area */
+.sheet-header {
+    margin-bottom: 30px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* The cutie mark uses this area for absolute positioning */
+}
+
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+}
+
+.logo-wrapper .logo {
+    width: 100%;
+    display: block;
+}
+
+.header-fields {
+    display: grid;
+    grid-template-columns: 2fr 1fr 100px;
+    /* Name | Pronouns | Level */
+    grid-template-areas:
+        "name pronouns level"
+        "origin role role"
+        "description languages movement";
+    gap: 15px 20px;
+}
+
+.field-group {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    /* Puts label under input visually but input first in DOM */
+}
+
+.field-group label {
+    text-align: center;
+    margin-top: -12px;
+    background: white;
+    align-self: center;
+    padding: 0 10px;
+    font-size: 12px;
+    z-index: 10;
+}
+
+.name-group {
+    grid-area: name;
+}
+
+.pronouns-group {
+    grid-area: pronouns;
+}
+
+.origin-group {
+    grid-area: origin;
+}
+
+.role-group {
+    grid-area: role;
+}
+
+.description-group {
+    grid-area: description;
+}
+
+.languages-group {
+    grid-area: languages;
+}
+
+.movement-group {
+    grid-area: movement;
+}
+
+.level-badge {
+    grid-area: level;
+    text-align: center;
+}
+
+.level-badge input {
+    text-align: center;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    font-size: 24px;
+    border-width: 3px;
+}
+
+/* Middle Section */
+.middle-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.traits-left {
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+}
+
+.points-center {
+    grid-column: span 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    height: 100%;
+}
+
+
+.traits-left .field-group {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.traits-left textarea {
+    resize: none;
+    border-radius: 15px;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.points-center {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    height: 100%;
+}
+
+.points-center .badge-box {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+}
+
+.points-center .badge-box input {
+    border-radius: 15px;
+    text-align: center;
+    flex-grow: 1;
+    height: auto;
+}
+
+/* Specific taller health box matching the wealth status format */
+.health-box input {
+    height: 60px;
+}
+
+.health-track {
+    width: 100%;
+    text-align: center;
+}
+
+.damage-circles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.damage-circles span {
+    font-family: var(--font-main);
+    font-size: 12px;
+    color: var(--primary-purple);
+    margin-right: 5px;
+}
+
+.damage-circles input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--primary-purple);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.damage-circles input[type="checkbox"]:checked {
+    background-color: var(--primary-purple);
+}
+
+.attack-table-container {
+    grid-column: span 2;
+    background-color: var(--fill-color-light);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    padding: 10px;
+    position: relative;
+}
+
+.table-label {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-purple);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 15px;
+    z-index: 10;
+}
+
+.attack-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 4px;
+    margin-top: 10px;
+}
+
+.attack-table th {
+    font-family: var(--font-main);
+    font-size: 10px;
+    color: var(--primary-purple);
+    text-align: center;
+}
+
+.attack-table td input {
+    border-radius: 5px;
+    padding: 4px;
+    border-width: 1px;
+}
+
+/* Stats Section (4 Columns) */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    align-items: start;
+    margin-bottom: 40px;
+    /* Spacing between Page 1 and Page 2 */
+}
+
+.stat-column {
+    background-color: var(--fill-color-light);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    padding: 20px 10px 10px 10px;
+    /* extra top padding for overlapping header */
+    position: relative;
+}
+
+.stat-header {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.stat-header h2 {
+    background-color: white;
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 5px 10px 5px 15px;
+    font-size: 16px;
+    margin: 0;
+    color: var(--primary-purple);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Position the input inside the header flexbox */
+.stat-input {
+    position: static;
+    transform: none;
+    width: 45px !important;
+    height: 30px;
+    padding: 0 5px !important;
+    text-align: center;
+    border-radius: 15px !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color);
+    background-color: white !important;
+}
+
+/* Specific headers - removing the input color change to keep it white as requested */
+.strength .stat-header h2,
+.speed .stat-header h2,
+.smarts .stat-header h2,
+.social .stat-header h2,
+.magic-header h2 {
+    color: white;
+    background-color: var(--border-color);
+    border-color: var(--border-color);
+}
+
+.stat-header .icon {
+    color: var(--heart-color);
+}
+
+.derived-stat {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.derived-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+input.derived-box {
+    width: 35px !important;
+    height: 35px;
+    text-align: center;
+    padding: 0;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    background: white;
+    font-family: var(--font-label);
+    font-size: 16px;
+    -moz-appearance: textfield;
+    /* Remove number spinners */
+}
+
+input.derived-box::-webkit-outer-spin-button,
+input.derived-box::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.derived-formula {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    color: var(--primary-purple);
+}
+
+.formula-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formula-box input {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    padding: 0;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+.formula-box label {
+    font-size: 8px;
+    margin-top: 2px;
+}
+
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Placeholder for skill group structure which we will refine via JS */
+.skill-group {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 5px;
+    min-height: 45px;
+}
+
+/* Skills Styling */
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.skill-group {
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: auto;
+    /* Allow expanding for 3 rows */
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skill-name {
+    font-family: var(--font-main);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.dice-track {
+    display: flex;
+    gap: 3px;
+}
+
+.dice-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dice-box label {
+    font-size: 8px;
+    margin-bottom: 2px;
+}
+
+.dice-box input[type="checkbox"] {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0;
+}
+
+.dice-box input[type="checkbox"]:checked {
+    background-color: var(--primary-purple);
+}
+
+.skill-specialization {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-top: 5px;
+    align-items: center;
+}
+
+.skill-specialization .spec-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 8px;
+    color: var(--primary-purple);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.spec-rows {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 3px;
+}
+
+.spec-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.spec-check {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+
+.spec-check:checked {
+    background-color: var(--primary-purple);
+}
+
+.spec-input {
+    flex-grow: 1;
+    height: 20px;
+    /* Thinner than before to fit 3 */
+    border-radius: 10px !important;
+    border: 1px solid var(--border-color) !important;
+    background-color: white !important;
+}
+
+/* Coloring specific to columns based on the PDF */
+.strength {
+    --primary-purple: #8B5A96;
+    --fill-color-light: #E7D9EB;
+    --border-color: #552B5D;
+}
+
+/* Purple */
+.speed {
+    --primary-purple: #965A8C;
+    --fill-color-light: #EAD8E4;
+    --border-color: #632C59;
+}
+
+/* Pinkish */
+.smarts {
+    --primary-purple: #755A96;
+    --fill-color-light: #E3D9EB;
+    --border-color: #3F2B5D;
+}
+
+/* Bluish Purple */
+.social {
+    --primary-purple: #966C5A;
+    --fill-color-light: #EBE0D9;
+    --border-color: #5D372B;
+}
+
+/* Orange/Brownish Pink */
+
+/* Add specific column headers from PDF */
+.strength {
+    --primary-purple: #8B5A96;
+    --fill-color-light: #E7D9EB;
+    --border-color: #552B5D;
+}
+
+.stat-header .icon {
+    color: white;
+}
+
+/* --- PAGE 2 STYLES --- */
+.page-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.row-two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.row-full {
+    width: 100%;
+}
+
+.bonds-perks-row {
+    margin-top: 10px;
+}
+
+.field-group-bubble {
+    background-color: var(--fill-color-light);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    padding: 20px 15px 15px;
+    /* Extra top padding for header */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.field-group-bubble textarea {
+    border: none;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.bubble-header-container {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.bubble-header {
+    background-color: var(--border-color);
+    color: white;
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 16px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.bg-bonds-group,
+.perks-group {
+    --primary-purple: #8B5A96;
+    --fill-color-light: #E7D9EB;
+    --border-color: #552B5D;
+}
+
+.floating-label {
+    background-color: var(--primary-purple);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    align-self: center;
+    margin-top: -15px;
+    z-index: 10;
+}
+
+.magic-section {
+    --primary-purple: #8B5A96;
+    --fill-color-light: #E7D9EB;
+    --border-color: #552B5D;
+    background-color: var(--fill-color-light);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    padding: 30px 20px 20px 20px;
+    margin-top: 40px;
+    position: relative;
+}
+
+.magic-header {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+    width: 100%;
+}
+
+.magic-header h2 {
+    position: relative;
+    background-color: var(--border-color);
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 5px 10px 5px 15px;
+    font-size: 16px;
+    margin: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+.magic-content {
+    display: flex;
+    justify-content: justify-between;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.spellcasting-left {
+    flex-grow: 1;
+}
+
+.spellcasting-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.spellcasting-title-row h3 {
+    margin: 0;
+    color: var(--primary-purple);
+    text-transform: uppercase;
+}
+
+.spell-dice-container {
+    display: flex;
+    gap: 8px;
+}
+
+.dice-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    color: var(--primary-purple);
+}
+
+.dice-col input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+
+.dice-col input[type="checkbox"]:checked {
+    background-color: var(--primary-purple);
+}
+
+.spell-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.spell-header-row {
+    display: flex;
+    margin-bottom: 5px;
+    align-items: flex-end;
+}
+
+.spell-header-row .sub-label {
+    flex-grow: 1;
+    font-size: 10px;
+    font-weight: bold;
+    color: var(--primary-purple);
+}
+
+.spell-header-row .col-head {
+    width: 60px;
+    /* Matching the inputs width plus gap */
+    margin-left: 10px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: var(--primary-purple);
+}
+
+.spell-body-row {
+    display: flex;
+    gap: 10px;
+}
+
+.spell-inputs-col {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.spell-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 25px;
+}
+
+.spell-input {
+    flex-grow: 1;
+    height: 25px;
+    border-radius: 12px !important;
+    border: 1px solid var(--border-color) !important;
+    margin: 0;
+}
+
+.spell-check {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    border: 2px solid var(--border-color);
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0;
+}
+
+.spell-check:checked {
+    background-color: var(--primary-purple);
+}
+
+.spell-spec-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+}
+
+.spell-spec-col .spec-label {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 10px;
+    color: var(--primary-purple);
+    text-transform: uppercase;
+}
+
+.spell-tier-col,
+.spell-circle-col {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 60px;
+}
+
+.tier-input,
+.circle-input {
+    width: 100%;
+    height: 25px;
+    border-radius: 12px !important;
+    border: 1px solid var(--border-color) !important;
+    text-align: center;
+    margin: 0;
+}
+
+.spellcasting-rank-table {
+    width: 160px;
+    /* Narrower table */
+    flex-shrink: 0;
+}
+
+.spellcasting-rank-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: 2px solid var(--border-color);
+}
+
+.spellcasting-rank-table th {
+    background: var(--primary-purple);
+    color: white;
+    padding: 8px;
+    font-size: 12px;
+}
+
+.spellcasting-rank-table td {
+    border: 1px solid var(--border-color);
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.base-die td {
+    background: var(--border-color);
+    color: white;
+}
+
+/* Cutie Mark Display */
+.cutie-mark-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 128px;
+    height: 128px;
+    background: white;
+    border: 3px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cutie-mark-container:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cutie-mark-container img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    width: 80%;
+    max-width: 600px;
+    max-height: 80vh;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: var(--primary-purple);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-header);
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #e0e0e0;
+}
+
+.cutie-mark-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f9f9f9;
+}
+
+.cutie-mark-item {
+    width: 64px;
+    height: 64px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.1s ease, border-color 0.1s ease;
+    padding: 5px;
+}
+
+.cutie-mark-item:hover {
+    transform: scale(1.1);
+    border-color: var(--primary-purple);
+}
+
+.cutie-mark-item img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
