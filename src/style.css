@@ -22,10 +22,12 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
+    min-width: fit-content;
 }
 
 .sheet-container {
     width: 100%;
+    min-width: 1100px;
     max-width: 1100px;
     /* Increased to fit everything with padding */
     box-sizing: border-box;
