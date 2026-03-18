@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLP Character Sheet</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div id="app" class="sheet-container">
+    <section class="page page-1">
+
+      <header class="sheet-header">
+        <div class="logo-area">
+          <div class="cutie-mark-container" title="Click to change Cutie Mark">
+            <img id="current-cutie-mark" src="/assets/cutiemarks/random_choice.svg" alt="Cutie Mark" />
+          </div>
+          <div class="logo-wrapper">
+            <img src="/logo.png" alt="My Little Pony Roleplaying Game" class="logo" />
+          </div>
+        </div>
+
+        <div class="header-fields">
+          <div class="field-group name-group">
+            <input type="text" id="name" />
+            <label for="name">NAME</label>
+          </div>
+          <div class="field-group pronouns-group">
+            <input type="text" id="pronouns" />
+            <label for="pronouns">PRONOUNS</label>
+          </div>
+          <div class="level-badge">
+            <label for="level">LEVEL</label>
+            <input type="number" id="level" />
+          </div>
+
+          <div class="field-group origin-group">
+            <input type="text" id="origin" />
+            <label for="origin">ORIGIN</label>
+          </div>
+          <div class="field-group role-group">
+            <input type="text" id="role" />
+            <label for="role">ROLE</label>
+          </div>
+
+          <div class="field-group description-group">
+            <input type="text" id="description" />
+            <label for="description">DESCRIPTION</label>
+          </div>
+          <div class="field-group languages-group">
+            <input type="text" id="languages" />
+            <label for="languages">LANGUAGES</label>
+          </div>
+          <div class="field-group movement-group">
+            <input type="text" id="movement" />
+            <label for="movement">MOVEMENT</label>
+          </div>
+        </div>
+      </header>
+
+      <section class="middle-section">
+        <div class="traits-left">
+          <div class="field-group influences-group">
+            <textarea id="influences" rows="3"></textarea>
+            <label for="influences">INFLUENCES</label>
+          </div>
+          <div class="field-group hangups-group">
+            <textarea id="hangups" rows="3"></textarea>
+            <label for="hangups">HANG-UPS</label>
+          </div>
+        </div>
+
+        <div class="points-center">
+          <div class="field-group badge-box wealth-box">
+            <input type="text" id="wealth-status" />
+            <label for="wealth-status">WEALTH STATUS</label>
+          </div>
+          <div class="field-group badge-box health-box">
+            <input type="number" id="health" class="health-input" />
+            <label for="health">HEALTH</label>
+          </div>
+        </div>
+
+        <div class="attack-table-container">
+          <label class="table-label">ATTACK</label>
+          <table class="attack-table">
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>RANGE</th>
+                <th>ATTACK</th>
+                <th>EFFECTS</th>
+                <th>NOTES</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+              </tr>
+              <tr>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+              </tr>
+              <tr>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+              </tr>
+              <tr>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+              </tr>
+              <tr>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+                <td><input type="text" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="stats-section">
+        <!-- STRENGTH -->
+        <div class="stat-column strength">
+          <div class="stat-header">
+            <h2>STRENGTH <input type="number" class="stat-input" /></h2>
+          </div>
+          <div class="derived-stat">
+            <div class="derived-header">
+              <label>TOUGHNESS</label>
+              <input type="number" class="derived-box" />
+            </div>
+            <div class="derived-formula">
+              <span>10 +</span>
+              <div class="formula-box"><input type="number" /><label>ESSENCE</label></div>
+              <span>+</span>
+              <div class="formula-box"><input type="number" /><label>PERKS</label></div>
+              <span>+</span>
+              <div class="formula-box"><input type="number" /><label>ARMOR</label></div>
+            </div>
+          </div>
+
+          <div class="skills-list">
+            <!-- Skills populated by JS or expanded HTML later -->
+            <div class="skill-group" data-skill="athletics"></div>
+            <div class="skill-group" data-skill="brawn"></div>
+            <div class="skill-group" data-skill="conditioning"></div>
+            <div class="skill-group" data-skill="intimidation"></div>
+            <div class="skill-group" data-skill="might"></div>
+          </div>
+        </div>
+
+        <!-- SPEED -->
+        <div class="stat-column speed">
+          <div class="stat-header">
+            <h2>SPEED <input type="number" class="stat-input" /></h2>
+          </div>
+          <div class="derived-stat">
+            <div class="derived-header">
+              <label>EVASION</label>
+              <input type="number" class="derived-box" />
+            </div>
+            <div class="derived-formula">
+              <span>10 +</span>
+              <div class="formula-box"><input type="number" /><label>ESSENCE</label></div>
+              <span>+</span>
+              <div class="formula-box"><input type="number" /><label>PERKS</label></div>
+              <span>+</span>
+              <div class="formula-box"><input type="number" /><label>ARMOR</label></div>
+            </div>
+          </div>
+
+          <div class="skills-list">
+            <div class="skill-group" data-skill="acrobatics"></div>
+            <div class="skill-group" data-skill="driving"></div>
+            <div class="skill-group" data-skill="finesse"></div>
+            <div class="skill-group" data-skill="infiltration"></div>
+            <div class="skill-group" data-skill="initiative"></div>
+            <div class="skill-group" data-skill="targeting"></div>
+          </div>
+        </div>
+
+        <!-- SMARTS -->
+        <div class="stat-column smarts">
+          <div class="stat-header">
+            <h2>SMARTS <input type="number" class="stat-input" /></h2>
+          </div>
+          <div class="derived-stat">
+            <div class="derived-header">
+              <label>WILLPOWER</label>
+              <input type="number" class="derived-box" />
+            </div>
+            <div class="derived-formula">
+              <span>10 +</span>
+              <div class="formula-box"><input type="number" /><label>ESSENCE</label></div>
+              <span>+</span>
+              <div class="formula-box"><input type="number" /><label>PERKS</label></div>
+              <span>+</span>
+              <div class="formula-box"><input type="number" /><label>ARMOR</label></div>
+            </div>
+          </div>
+
+          <div class="skills-list">
+            <div class="skill-group" data-skill="alertness"></div>
+            <div class="skill-group" data-skill="culture"></div>
+            <div class="skill-group" data-skill="science"></div>
+            <div class="skill-group" data-skill="survival"></div>
+            <div class="skill-group" data-skill="technology"></div>
+          </div>
+        </div>
+
+        <!-- SOCIAL -->
+        <div class="stat-column social">
+          <div class="stat-header">
+            <h2>SOCIAL <input type="number" class="stat-input" /></h2>
+          </div>
+          <div class="derived-stat">
+            <div class="derived-header">
+              <label>CLEVERNESS</label>
+              <input type="number" class="derived-box" />
+            </div>
+            <div class="derived-formula">
+              <span>10 +</span>
+              <div class="formula-box"><input type="number" /><label>ESSENCE</label></div>
+              <span>+</span>
+              <div class="formula-box"><input type="number" /><label>PERKS</label></div>
+              <span>+</span>
+              <div class="formula-box"><input type="number" /><label>ARMOR</label></div>
+            </div>
+          </div>
+
+          <div class="skills-list">
+            <div class="skill-group" data-skill="animal_handling"></div>
+            <div class="skill-group" data-skill="deception"></div>
+            <div class="skill-group" data-skill="performance"></div>
+            <div class="skill-group" data-skill="persuasion"></div>
+            <div class="skill-group" data-skill="streetwise"></div>
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="page page-2">
+      <!-- Two main columns for Background Bonds and Perks -->
+      <div class="row-two-cols bonds-perks-row">
+        <div class="field-group-bubble bg-bonds-group">
+          <div class="bubble-header-container">
+            <h2 class="bubble-header">BACKGROUND BONDS</h2>
+          </div>
+          <textarea id="background-bonds" rows="9"></textarea>
+        </div>
+        <div class="field-group-bubble perks-group">
+          <div class="bubble-header-container">
+            <h2 class="bubble-header">PERKS</h2>
+          </div>
+          <textarea id="perks" rows="9"></textarea>
+        </div>
+      </div>
+
+      <!-- Magic Section -->
+      <div class="magic-section">
+        <div class="stat-header magic-header">
+          <h2>MAGIC <input type="number" class="stat-input" /></h2>
+        </div>
+        <div class="magic-content">
+          <div class="spellcasting-left">
+            <div class="spellcasting-title-row">
+              <h3>SPELLCASTING</h3>
+              <div class="spell-dice-container">
+                <div class="dice-col"><span>D2</span><input type="checkbox" /></div>
+                <div class="dice-col"><span>D4</span><input type="checkbox" /></div>
+                <div class="dice-col"><span>D6</span><input type="checkbox" /></div>
+                <div class="dice-col"><span>D8</span><input type="checkbox" /></div>
+                <div class="dice-col"><span>D10</span><input type="checkbox" /></div>
+                <div class="dice-col"><span>D12</span><input type="checkbox" /></div>
+              </div>
+            </div>
+
+            <div class="spell-list">
+              <div class="spell-header-row">
+                <span class="sub-label">MASTERED SPELLS</span>
+                <span class="col-head">TIER</span>
+                <span class="col-head">CIRCLE</span>
+              </div>
+              <!-- 7 Spell rows -->
+              <div class="spell-body-row">
+                <div class="spell-inputs-col">
+                  <div class="spell-row"><input type="text" class="spell-input" /><input type="checkbox"
+                      class="spell-check" /></div>
+                  <div class="spell-row"><input type="text" class="spell-input" /><input type="checkbox"
+                      class="spell-check" /></div>
+                  <div class="spell-row"><input type="text" class="spell-input" /><input type="checkbox"
+                      class="spell-check" /></div>
+                  <div class="spell-row"><input type="text" class="spell-input" /><input type="checkbox"
+                      class="spell-check" /></div>
+                  <div class="spell-row"><input type="text" class="spell-input" /><input type="checkbox"
+                      class="spell-check" /></div>
+                  <div class="spell-row"><input type="text" class="spell-input" /><input type="checkbox"
+                      class="spell-check" /></div>
+                  <div class="spell-row"><input type="text" class="spell-input" /><input type="checkbox"
+                      class="spell-check" /></div>
+                  <div class="spell-row"><input type="text" class="spell-input" /><input type="checkbox"
+                      class="spell-check" /></div>
+                </div>
+                <div class="spell-spec-col">
+                  <span class="spec-label">specialized?</span>
+                </div>
+                <div class="spell-tier-col">
+                  <input type="text" class="tier-input" />
+                  <input type="text" class="tier-input" />
+                  <input type="text" class="tier-input" />
+                  <input type="text" class="tier-input" />
+                  <input type="text" class="tier-input" />
+                  <input type="text" class="tier-input" />
+                  <input type="text" class="tier-input" />
+                  <input type="text" class="tier-input" />
+                </div>
+                <div class="spell-circle-col">
+                  <input type="text" class="circle-input" />
+                  <input type="text" class="circle-input" />
+                  <input type="text" class="circle-input" />
+                  <input type="text" class="circle-input" />
+                  <input type="text" class="circle-input" />
+                  <input type="text" class="circle-input" />
+                  <input type="text" class="circle-input" />
+                  <input type="text" class="circle-input" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spellcasting-rank-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>SPELLCASTING RANK</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>(3D6)</td>
+                </tr>
+                <tr>
+                  <td>(2D8)</td>
+                </tr>
+                <tr>
+                  <td>D12</td>
+                </tr>
+                <tr>
+                  <td>D10</td>
+                </tr>
+                <tr>
+                  <td>D8</td>
+                </tr>
+                <tr>
+                  <td>D6</td>
+                </tr>
+                <tr>
+                  <td>D4</td>
+                </tr>
+                <tr>
+                  <td>D2</td>
+                </tr>
+                <tr class="base-die">
+                  <td>BASE DIE</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Cutie Mark Selection Modal -->
+    <div id="cutie-mark-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Select a Cutie Mark</h2>
+          <button id="close-modal" class="close-btn">&times;</button>
+        </div>
+        <div id="cutie-mark-grid" class="cutie-mark-grid">
+          <!-- Content injected via JS -->
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

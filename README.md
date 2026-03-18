@@ -1,55 +1,47 @@
-# MLP Character Sheet
+# Svelte + TS + Vite
 
-A digital character sheet for the My Little Pony Roleplaying Game built with standard HTML, CSS, and Vanilla JavaScript, powered by a modern Vite build toolchain.
+This template should help get you started developing with Svelte and TypeScript in Vite.
 
-## Project Structure
+## Recommended IDE Setup
 
-This project follows a standard Vite configuration:
+[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
 
-*   **`public/`**: Contains static assets that are served directly without processing (e.g., the root `favicon.svg` and `logo.png`).
-*   **`src/`**: Contains all source code including HTML structure, styling, logic, and processed assets inside `/assets/`.
-*   **`index.html`**: The main entry point file residing in the root, which references the `src/main.js` execution script.
+## Need an official Svelte framework?
 
-## Getting Started
+Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
 
-### Prerequisites
+## Technical considerations
 
-Ensure you have [Node.js](https://nodejs.org/) and `npm` installed. You can check this by running:
+**Why use this over SvelteKit?**
 
-```bash
-node -v
-npm -v
-```
+- It brings its own routing solution which might not be preferable for some users.
+- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
 
-### Installation
+This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
 
-Clone the repository and install the development dependencies (primarily Vite):
+Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
 
-```bash
-npm install
-```
+**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
 
-### Local Development
+Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
 
-To spin up a local development server with Hot Module Replacement (HMR), run:
+**Why include `.vscode/extensions.json`?**
 
-```bash
-npm run dev
-```
-The application will be accessible at `http://localhost:5173`. Any changes you make to the source files will be instantly reflected in the browser.
+Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
 
-### Building for Production
+**Why enable `allowJs` in the TS template?**
 
-When you are ready to deploy the application, you must bundle it. Vite will package the Vanilla JS, minify your CSS, resolve asset paths, and generate a highly optimized `dist/` folder.
+While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
 
-```bash
-npm run build
-```
+**Why is HMR not preserving my local component state?**
 
-The resulting `dist/` directory can then be uploaded to **any static host** (like GitHub Pages, Netlify, Apache, or Nginx). It is 100% vanilla and requires no server-side processing.
+HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
 
-To preview your production build locally before uploading:
+If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
 
-```bash
-npm run preview
+```ts
+// store.ts
+// An extremely simple external store
+import { writable } from 'svelte/store'
+export default writable(0)
 ```
