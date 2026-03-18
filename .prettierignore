@@ -1,0 +1,8 @@
+dist/
+node_modules/
+backup_vanilla/
+original/
+public/
+.vite/
+.claude/
+package-lock.json
