@@ -16,20 +16,20 @@
 	}
 
 	function selectCutieMark(filename: string) {
-		character.cutieMark = `/cutiemarks/${filename}`;
+		character.cutieMark = `cutiemarks/${filename}`;
 		closeModal();
 	}
 
 	function selectRandom() {
 		const randomIndex = Math.floor(Math.random() * cutieMarksList.length);
-		character.cutieMark = `/cutiemarks/${cutieMarksList[randomIndex]}`;
+		character.cutieMark = `cutiemarks/${cutieMarksList[randomIndex]}`;
 		closeModal();
 	}
 
 	onMount(() => {
 		if (character.cutieMark.includes('random_choice')) {
 			const randomIndex = Math.floor(Math.random() * cutieMarksList.length);
-			character.cutieMark = `/cutiemarks/${cutieMarksList[randomIndex]}`;
+			character.cutieMark = `cutiemarks/${cutieMarksList[randomIndex]}`;
 		}
 	});
 
@@ -80,7 +80,7 @@
 					role="button"
 					tabindex="0"
 				>
-					<img src="/cutiemarks/random_choice.svg" alt="Random Choice" title="Random Choice" />
+					<img src="cutiemarks/random_choice.svg" alt="Random Choice" title="Random Choice" />
 				</div>
 
 				<!-- All mapped cutie marks -->
@@ -93,7 +93,7 @@
 						tabindex="0"
 					>
 						<img
-							src="/cutiemarks/{filename}"
+							src="cutiemarks/{filename}"
 							alt={cleanTitle(filename)}
 							title={cleanTitle(filename)}
 							loading="lazy"

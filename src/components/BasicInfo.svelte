@@ -21,8 +21,11 @@
 	<div class="logo-area">
 		<CutieMarkSelector />
 		<div class="logo-wrapper">
-			<img src="/logo.png" alt="My Little Pony Roleplaying Game" class="logo" />
+			<img src="logo.png" alt="My Little Pony Roleplaying Game" class="logo" />
 		</div>
+		{#if character.isComplete}
+			<div class="complete-stamp">COMPLETE</div>
+		{/if}
 	</div>
 
 	<div class="header-fields">

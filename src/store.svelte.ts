@@ -33,7 +33,7 @@ export class CharacterStore {
 	movement = $state('');
 	role = $state<Role>('');
 	languages = $state('Pony');
-	cutieMark = $state('/cutiemarks/random_choice.svg');
+	cutieMark = $state('cutiemarks/random_choice.svg');
 	earthPonyEssence = $state<'strength' | 'social'>('strength');
 	adaptableEssence = $state<EssenceType>('strength');
 	honestyEssence = $state<'strength' | 'speed' | 'smarts'>('strength');
@@ -260,6 +260,38 @@ export class CharacterStore {
 			});
 		}
 		return result;
+	}
+
+	/** Whether the character sheet is fully complete */
+	get isComplete(): boolean {
+		// Name must be filled
+		if (!this.name.trim()) return false;
+
+		// Origin and role must be selected
+		if (!this.origin) return false;
+		if (!this.role) return false;
+
+		// All essence points allocated
+		if (this.availableEssencePoints !== 0) return false;
+
+		// All skill points allocated (no remaining points in any essence)
+		if (this.totalSkillPointsAvailable !== 0) return false;
+
+		// All active magic spell slots filled (if magical)
+		if (this.isMagical && this.magicRank > 0) {
+			const activeSlotCount = Math.min(this.magicRank, 6);
+			for (let i = 0; i < activeSlotCount; i++) {
+				if (!this.masteredSpells[i]) return false;
+			}
+		}
+
+		// Earth Pony must have chosen a general perk
+		if (this.origin === 'Earth Pony' && this.generalPerks.length === 0) return false;
+
+		// At least 1 influence selected
+		if (this.influences.length === 0 || !this.influences[0]) return false;
+
+		return true;
 	}
 }
 
