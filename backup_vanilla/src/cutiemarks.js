@@ -93,7 +93,7 @@ const cutieMarksList = [
     "PonyMaker_Umbrella.png",
     "PonyMaker_WoodenHammer.png",
     "PonyMaker_Wreath.png",
-    "PonyMaker_Épées.png"
+    "PonyMaker_Epees.png"
 ];
 
 export default cutieMarksList;

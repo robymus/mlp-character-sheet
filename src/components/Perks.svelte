@@ -222,8 +222,9 @@
 							{/if}
 							{#if perk.choices}
 								<div class="perk-choice">
-									<label class="choice-label">{perk.choiceLabel || 'Choose:'}</label>
+									<label class="choice-label" for="perk-choice-{perk.name}">{perk.choiceLabel || 'Choose:'}</label>
 									<select
+										id="perk-choice-{perk.name}"
 										class="inline-select"
 										value={character.generalPerkChoices[perk.name] || ''}
 										onchange={(e) => setChoice(perk.name, e.currentTarget.value)}

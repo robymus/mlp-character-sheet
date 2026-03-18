@@ -80,7 +80,8 @@ body {
 }
 
 /* Typography & Inputs */
-label {
+label,
+.field-label {
 	font-family: var(--font-main);
 	font-weight: 600;
 	font-size: 14px;
@@ -164,7 +165,8 @@ textarea:focus {
 	/* Puts label under input visually but input first in DOM */
 }
 
-.field-group label {
+.field-group label,
+.field-group .field-label {
 	text-align: center;
 	margin-top: -12px;
 	background: white;

@@ -102,7 +102,7 @@
 				</button>
 			{/if}
 		</div>
-		<label>INFLUENCES</label>
+		<span class="field-label">INFLUENCES</span>
 	</div>
 
 	<div class="field-group hangups-group">
@@ -115,7 +115,7 @@
 				<p class="hangup-empty">Take a 2nd influence to get a Hang-Up.</p>
 			{/if}
 		</div>
-		<label>HANG-UPS</label>
+		<span class="field-label">HANG-UPS</span>
 	</div>
 </div>
 
