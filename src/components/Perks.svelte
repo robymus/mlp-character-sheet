@@ -46,9 +46,6 @@
 		return { met: true, reason: '' };
 	}
 
-	/** Earth Pony gets 1 general perk slot */
-	let hasGeneralPerkSlot = $derived(character.origin === 'Earth Pony');
-
 	function handlePerkSelect(perk: GeneralPerk) {
 		character.generalPerks = [...character.generalPerks, perk.name];
 	}
@@ -151,6 +148,13 @@
 						which makes their horn glow with magical power.
 					</p>
 				</div>
+				<div class="perk-item read-only origin-box">
+					<span class="perk-name">Magical</span>
+					<p class="perk-desc">
+						You are a magical pony capable of casting spells. Unlocks the Spellcasting skill and
+						spell slots.
+					</p>
+				</div>
 			{:else}
 				<p class="empty-state">Select an Origin to see Origin Perks.</p>
 			{/if}
@@ -183,20 +187,10 @@
 			</div>
 		{/if}
 
-		<div class="perk-section">
-			<span class="perk-label">General Perks:</span>
+		{#if character.origin === 'Earth Pony'}
+			<div class="perk-section">
+				<span class="perk-label">General Perks:</span>
 
-			{#if character.origin === 'Unicorn'}
-				<!-- Unicorns auto-get Magical -->
-				<div class="perk-item added-perk-box">
-					<span class="perk-name">Magical</span>
-					<p class="perk-desc">
-						You are a magical pony capable of casting spells. Unlocks the Spellcasting skill and
-						spell slots.
-					</p>
-				</div>
-			{:else if hasGeneralPerkSlot}
-				<!-- Earth Pony gets to pick 1 general perk -->
 				{#if character.generalPerks.length === 0}
 					<button class="perk-select-btn" onclick={() => (showPerkModal = true)}>
 						Select General Perk...
@@ -244,12 +238,9 @@
 						</div>
 					{/if}
 				{/each}
-			{:else if character.origin === 'Pegasus'}
-				<p class="empty-state">Pegasus origin does not grant a General Perk.</p>
-			{:else}
-				<p class="empty-state">Select an Origin to see General Perks.</p>
-			{/if}
-		</div>
+			</div>
+		{/if}
+
 
 		{#if character.role}
 			{@const roleName = character.role.replace('Spirit of ', '')}
