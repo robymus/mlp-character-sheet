@@ -1,55 +1,58 @@
 # MLP Character Sheet
 
-A digital character sheet for the My Little Pony Roleplaying Game built with standard HTML, CSS, and Vanilla JavaScript, powered by a modern Vite build toolchain.
+A digital character sheet for the **My Little Pony Roleplaying Game**. Built to help new players create level-1 characters quickly with guided selections, automatic calculations, and rule validation.
 
-## Project Structure
+## Features
 
-This project follows a standard Vite configuration:
+- **Origin selection** (Earth Pony, Pegasus, Unicorn) with unique bonuses and perks
+- **Essence allocation** (Strength, Speed, Smarts, Social) with real-time point tracking
+- **Skill system** with D2-D12 dice ranks, specializations, and per-essence point pools
+- **Magic & Spellcasting** for Unicorns and characters with the Magical perk
+- **25 general perks** with prerequisite checking and choices
+- **18 influences** with random background bond generation
+- **6 Spirit Roles** with unique role perks
+- **95+ cutie marks** to choose from
+- **Completeness tracking** with a visual stamp when the character is ready
 
-*   **`public/`**: Contains static assets that are served directly without processing (e.g., the root `favicon.svg` and `logo.png`).
-*   **`src/`**: Contains all source code including HTML structure, styling, logic, and processed assets inside `/assets/`.
-*   **`index.html`**: The main entry point file residing in the root, which references the `src/main.js` execution script.
+Fully client-side - no server, no accounts, runs entirely in the browser.
 
 ## Getting Started
 
-### Prerequisites
-
-Ensure you have [Node.js](https://nodejs.org/) and `npm` installed. You can check this by running:
-
-```bash
-node -v
-npm -v
-```
-
-### Installation
-
-Clone the repository and install the development dependencies (primarily Vite):
-
 ```bash
 npm install
-```
-
-### Local Development
-
-To spin up a local development server with Hot Module Replacement (HMR), run:
-
-```bash
 npm run dev
 ```
-The application will be accessible at `http://localhost:5173`. Any changes you make to the source files will be instantly reflected in the browser.
 
-### Building for Production
+Open http://localhost:5173 to start building your character.
 
-When you are ready to deploy the application, you must bundle it. Vite will package the Vanilla JS, minify your CSS, resolve asset paths, and generate a highly optimized `dist/` folder.
+## Scripts
+
+| Command              | Description              |
+| -------------------- | ------------------------ |
+| `npm run dev`        | Start dev server         |
+| `npm run build`      | Production build         |
+| `npm run preview`    | Preview production build |
+| `npm test`           | Run tests                |
+| `npm run test:watch` | Run tests in watch mode  |
+| `npm run check`      | Type check               |
+| `npm run lint`       | Lint                     |
+| `npm run format`     | Format code              |
+
+## Tech Stack
+
+- [Svelte 5](https://svelte.dev) with TypeScript
+- [Vite](https://vite.dev) for build tooling
+- [Vitest](https://vitest.dev) for testing
+
+## Deployment
+
+The build output uses relative asset paths (`base: './'`), so it can be deployed under any URL path:
 
 ```bash
 npm run build
+# Deploy the dist/ folder
 ```
 
-The resulting `dist/` directory can then be uploaded to **any static host** (like GitHub Pages, Netlify, Apache, or Nginx). It is 100% vanilla and requires no server-side processing.
+## License
 
-To preview your production build locally before uploading:
-
-```bash
-npm run preview
-```
+[UNLICENSE](LICENSE) (public domain)
