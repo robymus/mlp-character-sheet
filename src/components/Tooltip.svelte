@@ -13,7 +13,7 @@
 		content: string;
 		disabled?: boolean;
 		alwaysShow?: boolean;
-		children: () => void;
+		children: import('svelte').Snippet;
 	} = $props();
 
 	let showTooltip = $state(false);

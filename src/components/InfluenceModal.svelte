@@ -200,5 +200,4 @@
 		line-height: 1.3;
 		margin-top: auto;
 	}
-
 </style>

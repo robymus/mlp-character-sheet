@@ -17,13 +17,13 @@ describe('production build', () => {
 
 	it('produces JS bundle in dist/assets', () => {
 		const assets = readdirSync(join(DIST, 'assets'));
-		const jsFiles = assets.filter((f) => f.endsWith('.js'));
+		const jsFiles = assets.filter((f: string) => f.endsWith('.js'));
 		expect(jsFiles.length).toBeGreaterThanOrEqual(1);
 	});
 
 	it('produces CSS bundle in dist/assets', () => {
 		const assets = readdirSync(join(DIST, 'assets'));
-		const cssFiles = assets.filter((f) => f.endsWith('.css'));
+		const cssFiles = assets.filter((f: string) => f.endsWith('.css'));
 		expect(cssFiles.length).toBeGreaterThanOrEqual(1);
 	});
 
@@ -36,7 +36,7 @@ describe('production build', () => {
 
 	it('JS bundle is valid (no syntax errors on parse)', () => {
 		const assets = readdirSync(join(DIST, 'assets'));
-		const jsFile = assets.find((f) => f.endsWith('.js'));
+		const jsFile = assets.find((f: string) => f.endsWith('.js'));
 		expect(jsFile).toBeDefined();
 		const js = readFileSync(join(DIST, 'assets', jsFile!), 'utf-8');
 		// If this throws, the JS has syntax errors
@@ -45,7 +45,7 @@ describe('production build', () => {
 
 	it('CSS bundle is non-empty', () => {
 		const assets = readdirSync(join(DIST, 'assets'));
-		const cssFile = assets.find((f) => f.endsWith('.css'));
+		const cssFile = assets.find((f: string) => f.endsWith('.css'));
 		expect(cssFile).toBeDefined();
 		const css = readFileSync(join(DIST, 'assets', cssFile!), 'utf-8');
 		expect(css.length).toBeGreaterThan(100);
@@ -53,7 +53,7 @@ describe('production build', () => {
 
 	it('JS bundle contains expected application code markers', () => {
 		const assets = readdirSync(join(DIST, 'assets'));
-		const jsFile = assets.find((f) => f.endsWith('.js'));
+		const jsFile = assets.find((f: string) => f.endsWith('.js'));
 		const js = readFileSync(join(DIST, 'assets', jsFile!), 'utf-8');
 		// The store defines essence skills — these string literals should appear in the bundle
 		expect(js).toContain('athletics');
@@ -65,7 +65,7 @@ describe('production build', () => {
 
 	it('CSS contains expected style rules', () => {
 		const assets = readdirSync(join(DIST, 'assets'));
-		const cssFile = assets.find((f) => f.endsWith('.css'));
+		const cssFile = assets.find((f: string) => f.endsWith('.css'));
 		const css = readFileSync(join(DIST, 'assets', cssFile!), 'utf-8');
 		expect(css).toContain('border-radius');
 		expect(css).toContain('font-family');
