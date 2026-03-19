@@ -15,7 +15,7 @@
 		defenseName: string;
 		value: number;
 		computedValue: number;
-		children: () => void;
+		children: import('svelte').Snippet;
 	} = $props();
 
 	function increment() {

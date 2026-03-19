@@ -222,7 +222,9 @@
 							{/if}
 							{#if perk.choices}
 								<div class="perk-choice">
-									<label class="choice-label" for="perk-choice-{perk.name}">{perk.choiceLabel || 'Choose:'}</label>
+									<label class="choice-label" for="perk-choice-{perk.name}"
+										>{perk.choiceLabel || 'Choose:'}</label
+									>
 									<select
 										id="perk-choice-{perk.name}"
 										class="inline-select"
@@ -241,7 +243,6 @@
 				{/each}
 			</div>
 		{/if}
-
 
 		{#if character.role}
 			{@const roleName = character.role.replace('Spirit of ', '')}
