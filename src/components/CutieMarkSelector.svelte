@@ -2,8 +2,7 @@
 	import { character } from '../store.svelte';
 	import { onMount } from 'svelte';
 
-	// Cutie marks list from the original codebase
-	import cutieMarksList from '../../backup_vanilla/src/cutiemarks.js';
+	import cutieMarksList from '../data/cutiemarks';
 
 	let isModalOpen = $state(false);
 
