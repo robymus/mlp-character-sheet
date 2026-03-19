@@ -201,9 +201,4 @@
 		margin-top: auto;
 	}
 
-	@media (max-width: 768px) {
-		.influences-grid {
-			grid-template-columns: 1fr;
-		}
-	}
 </style>

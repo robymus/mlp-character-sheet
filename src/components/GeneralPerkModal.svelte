@@ -258,9 +258,4 @@
 		margin-top: 4px;
 	}
 
-	@media (max-width: 768px) {
-		.perks-grid {
-			grid-template-columns: 1fr;
-		}
-	}
 </style>
