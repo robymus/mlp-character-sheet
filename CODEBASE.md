@@ -120,14 +120,14 @@ public/
 
 ### Routing
 
-| Route                  | Mode       | Auth Required | Description                                  |
-| ---------------------- | ---------- | ------------- | -------------------------------------------- |
+| Route                  | Mode       | Auth Required | Description                                    |
+| ---------------------- | ---------- | ------------- | ---------------------------------------------- |
 | `/`                    | redirect   | No            | → `/new` (guest) or last character (logged in) |
-| `/standalone`          | standalone | No            | Original app, no persistence                 |
-| `/new`                 | full       | No (to edit)  | New character sheet                          |
-| `/character/[id]`      | full       | Yes           | Load persisted character                     |
-| `/api/characters`      | API        | Yes           | List characters, create, check               |
-| `/api/characters/[id]` | API        | Yes           | Update, delete character                     |
+| `/standalone`          | standalone | No            | Original app, no persistence                   |
+| `/new`                 | full       | No (to edit)  | New character sheet                            |
+| `/character/[id]`      | full       | Yes           | Load persisted character                       |
+| `/api/characters`      | API        | Yes           | List characters, create, check                 |
+| `/api/characters/[id]` | API        | Yes           | Update, delete character                       |
 
 ### Authentication
 
