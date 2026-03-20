@@ -1,0 +1,15 @@
+name = "mlp-character-sheet"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+main = ".svelte-kit/cloudflare/_worker.js"
+assets = { directory = ".svelte-kit/cloudflare", binding = "ASSETS" }
+
+[[d1_databases]]
+binding = "DB"
+database_name = "mlp-characters"
+database_id = "0253c31b-5615-45ed-978a-fad51aa8f33a"
+
+[observability]
+[observability.logs]
+enabled = false
+invocation_logs = true

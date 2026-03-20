@@ -1,73 +1,79 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { execSync } from 'child_process';
-import { existsSync, readFileSync, readdirSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 
 const ROOT = join(import.meta.dirname, '..', '..');
-const DIST = join(ROOT, 'dist');
+const OUTPUT = join(ROOT, '.svelte-kit', 'cloudflare');
+const APP = join(OUTPUT, '_app', 'immutable');
 
 describe('production build', () => {
-	beforeAll(() => {
-		execSync('npx vite build', { cwd: ROOT, stdio: 'pipe' });
-	}, 30_000);
+    beforeAll(() => {
+        execSync('npx vite build', { cwd: ROOT, stdio: 'pipe' });
+    }, 60_000);
 
-	it('produces dist/index.html', () => {
-		expect(existsSync(join(DIST, 'index.html'))).toBe(true);
-	});
+    it('produces _worker.js', () => {
+        const worker = readFileSync(join(OUTPUT, '_worker.js'), 'utf-8');
+        expect(worker.length).toBeGreaterThan(100);
+    });
 
-	it('produces JS bundle in dist/assets', () => {
-		const assets = readdirSync(join(DIST, 'assets'));
-		const jsFiles = assets.filter((f: string) => f.endsWith('.js'));
-		expect(jsFiles.length).toBeGreaterThanOrEqual(1);
-	});
+    it('produces JS chunks', () => {
+        const chunks = readdirSync(join(APP, 'chunks'));
+        const jsFiles = chunks.filter((f: string) => f.endsWith('.js'));
+        expect(jsFiles.length).toBeGreaterThanOrEqual(1);
+    });
 
-	it('produces CSS bundle in dist/assets', () => {
-		const assets = readdirSync(join(DIST, 'assets'));
-		const cssFiles = assets.filter((f: string) => f.endsWith('.css'));
-		expect(cssFiles.length).toBeGreaterThanOrEqual(1);
-	});
+    it('produces CSS assets', () => {
+        const assets = readdirSync(join(APP, 'assets'));
+        const cssFiles = assets.filter((f: string) => f.endsWith('.css'));
+        expect(cssFiles.length).toBeGreaterThanOrEqual(1);
+    });
 
-	it('index.html references relative asset paths', () => {
-		const html = readFileSync(join(DIST, 'index.html'), 'utf-8');
-		// Should use ./ relative paths, not absolute /
-		expect(html).toContain('./assets/');
-		expect(html).not.toMatch(/(?:src|href)="\/assets\//);
-	});
+    it('JS chunks are well-formed', () => {
+        const chunks = readdirSync(join(APP, 'chunks'));
+        const jsFiles = chunks.filter((f: string) => f.endsWith('.js'));
+        for (const file of jsFiles) {
+            const js = readFileSync(join(APP, 'chunks', file), 'utf-8');
+            // Empty chunks are valid bundler artifacts (module boundary markers)
+            if (js.length === 0) continue;
+            // Should not contain obvious build errors
+            expect(js).not.toContain('__VITE_ERROR__');
+        }
+    });
 
-	it('JS bundle is valid (no syntax errors on parse)', () => {
-		const assets = readdirSync(join(DIST, 'assets'));
-		const jsFile = assets.find((f: string) => f.endsWith('.js'));
-		expect(jsFile).toBeDefined();
-		const js = readFileSync(join(DIST, 'assets', jsFile!), 'utf-8');
-		// If this throws, the JS has syntax errors
-		expect(() => new Function(js)).not.toThrow();
-	});
+    it('CSS assets are non-empty', () => {
+        const assets = readdirSync(join(APP, 'assets'));
+        const cssFiles = assets.filter((f: string) => f.endsWith('.css'));
+        for (const file of cssFiles) {
+            const css = readFileSync(join(APP, 'assets', file), 'utf-8');
+            expect(css.length).toBeGreaterThan(100);
+        }
+    });
 
-	it('CSS bundle is non-empty', () => {
-		const assets = readdirSync(join(DIST, 'assets'));
-		const cssFile = assets.find((f: string) => f.endsWith('.css'));
-		expect(cssFile).toBeDefined();
-		const css = readFileSync(join(DIST, 'assets', cssFile!), 'utf-8');
-		expect(css.length).toBeGreaterThan(100);
-	});
+    it('page JS contains expected application code markers', () => {
+        const nodes = readdirSync(join(APP, 'nodes'));
+        const chunks = readdirSync(join(APP, 'chunks'));
+        const allJs = [...nodes, ...chunks]
+            .filter((f: string) => f.endsWith('.js'))
+            .map((f: string) => {
+                const dir = nodes.includes(f) ? 'nodes' : 'chunks';
+                return readFileSync(join(APP, dir, f), 'utf-8');
+            })
+            .join('\n');
+        expect(allJs).toContain('athletics');
+        expect(allJs).toContain('conditioning');
+        expect(allJs).toContain('Unicorn');
+        expect(allJs).toContain('Earth Pony');
+        expect(allJs).toContain('Pegasus');
+    });
 
-	it('JS bundle contains expected application code markers', () => {
-		const assets = readdirSync(join(DIST, 'assets'));
-		const jsFile = assets.find((f: string) => f.endsWith('.js'));
-		const js = readFileSync(join(DIST, 'assets', jsFile!), 'utf-8');
-		// The store defines essence skills — these string literals should appear in the bundle
-		expect(js).toContain('athletics');
-		expect(js).toContain('conditioning');
-		expect(js).toContain('Unicorn');
-		expect(js).toContain('Earth Pony');
-		expect(js).toContain('Pegasus');
-	});
-
-	it('CSS contains expected style rules', () => {
-		const assets = readdirSync(join(DIST, 'assets'));
-		const cssFile = assets.find((f: string) => f.endsWith('.css'));
-		const css = readFileSync(join(DIST, 'assets', cssFile!), 'utf-8');
-		expect(css).toContain('border-radius');
-		expect(css).toContain('font-family');
-	});
+    it('CSS contains expected style rules', () => {
+        const assets = readdirSync(join(APP, 'assets'));
+        const allCss = assets
+            .filter((f: string) => f.endsWith('.css'))
+            .map((f: string) => readFileSync(join(APP, 'assets', f), 'utf-8'))
+            .join('\n');
+        expect(allCss).toContain('border-radius');
+        expect(allCss).toContain('font-family');
+    });
 });

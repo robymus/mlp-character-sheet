@@ -46,11 +46,92 @@ Open http://localhost:5173 to start building your character.
 
 ## Deployment
 
-The build output uses relative asset paths (`base: './'`), so it can be deployed under any URL path:
+Deployed to **Cloudflare Pages** at [mlp.p97.dev](https://mlp.p97.dev) with automatic builds from Git.
+
+### Prerequisites
+
+- A [Cloudflare](https://dash.cloudflare.com) account
+- A [GitHub OAuth App](https://github.com/settings/developers) for authentication
+- Node.js 22+
+
+### 1. Create a GitHub OAuth App
+
+1. Go to **GitHub → Settings → Developer settings → OAuth Apps → New OAuth App**
+2. Fill in:
+    - **Application name:** `MLP Character Sheet`
+    - **Homepage URL:** `https://mlp.p97.dev`
+    - **Authorization callback URL:** `https://mlp.p97.dev/auth/callback/github`
+3. Click **Register application**
+4. Copy the **Client ID**
+5. Click **Generate a new client secret** and copy it
+
+### 2. Create a Cloudflare D1 Database
+
+```bash
+npx wrangler d1 create mlp-characters
+```
+
+Copy the `database_id` from the output into `wrangler.toml`.
+
+Run the database migrations:
+
+```bash
+npx wrangler d1 execute mlp-characters --remote --file=./drizzle/migrations/0000_auth.sql
+npx wrangler d1 execute mlp-characters --remote --file=./drizzle/migrations/0001_characters.sql
+```
+
+### 3. Create a Cloudflare Worker (connected to Git)
+
+1. Go to **Cloudflare Dashboard → Workers & Pages → Create → Connect to Git**
+2. Select your GitHub repository
+3. Configure build settings:
+    - **Production branch:** `main`
+    - **Build command:** `npm run build`
+    - **Deploy command:** `npx wrangler deploy`
+    - **Node.js version:** Set environment variable `NODE_VERSION` = `22`
+
+This enables:
+
+- **Production deploys** on every push to `main`
+- **Preview deploys** on every pull request (each PR gets a unique URL)
+
+### 4. Configure Bindings and Secrets
+
+In **Cloudflare Dashboard → Workers & Pages → your project → Settings**:
+
+**Variables and Secrets** — add the following as secrets (encrypted):
+
+| Variable               | Value                              |
+| ---------------------- | ---------------------------------- |
+| `GITHUB_CLIENT_ID`     | From step 1                        |
+| `GITHUB_CLIENT_SECRET` | From step 1                        |
+| `AUTH_SECRET`          | Random 32+ char string (see below) |
+
+Generate `AUTH_SECRET`:
+
+```bash
+openssl rand -base64 32
+```
+
+**D1 Database Bindings** — add:
+
+- **Variable name:** `DB`
+- **D1 database:** `mlp-characters`
+
+> **Note:** For preview deploys, you may want a separate GitHub OAuth App with callback URL matching the preview domain.
+
+### 5. Custom Domain
+
+1. Ensure your domain's zone (e.g. `p97.dev`) is managed by Cloudflare (nameservers pointing to Cloudflare)
+2. Go to your project → **Settings → Domains & Routes**
+3. Add `mlp.p97.dev`
+4. Cloudflare handles DNS and SSL automatically
+
+### Manual Deploy
 
 ```bash
 npm run build
-# Deploy the dist/ folder
+npx wrangler deploy
 ```
 
 ## License
