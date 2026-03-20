@@ -63,6 +63,7 @@
                 history.replaceState({}, '', `/character/${result.id}`);
             }
             character.locked = true;
+            window.dispatchEvent(new CustomEvent('character-saved'));
         } catch {
             lockError = 'Network error. Please try again.';
         } finally {
@@ -112,7 +113,7 @@
             {#if mode === 'full'}
                 {#if isLoggedIn}
                     <button class="btn-status btn-lock" onclick={handleLock} disabled={saving}>
-                        {saving ? 'Saving...' : '&#x1f512; Lock & Save'}
+                        {#if saving}Saving...{:else}&#x1f512; Lock &amp; Save{/if}
                     </button>
                 {:else}
                     <span class="login-hint">Log in to lock &amp; save</span>

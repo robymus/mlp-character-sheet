@@ -82,7 +82,7 @@
                     class:selected={localOrigin === 'Earth Pony'}
                     onclick={() => selectOrigin('Earth Pony')}
                 >
-                    <img src="origins/earth_pony.png" alt="Earth Pony" />
+                    <img src="/origins/earth_pony.png" alt="Earth Pony" />
                     <h3>Earth Pony</h3>
                     <p>
                         Earth Ponies are naturally resilient and deeply connected to the land. They
@@ -97,7 +97,7 @@
                     class:selected={localOrigin === 'Pegasus'}
                     onclick={() => selectOrigin('Pegasus')}
                 >
-                    <img src="origins/pegasus.png" alt="Pegasus" />
+                    <img src="/origins/pegasus.png" alt="Pegasus" />
                     <h3>Pegasus</h3>
                     <p>
                         Pegasi have the unique ability to fly and walk on clouds. They are naturally
@@ -111,7 +111,7 @@
                     class:selected={localOrigin === 'Unicorn'}
                     onclick={() => selectOrigin('Unicorn')}
                 >
-                    <img src="origins/unicorn.png" alt="Unicorn" />
+                    <img src="/origins/unicorn.png" alt="Unicorn" />
                     <h3>Unicorn</h3>
                     <p>
                         Unicorns possess a horn that allows them to channel magic. They can move

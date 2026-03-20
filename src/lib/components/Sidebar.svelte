@@ -51,6 +51,12 @@
             characters = [];
         }
     });
+
+    $effect(() => {
+        const handler = () => refreshCharacters();
+        window.addEventListener('character-saved', handler);
+        return () => window.removeEventListener('character-saved', handler);
+    });
 </script>
 
 <button class="hamburger" onclick={() => (sidebarOpen = !sidebarOpen)} aria-label="Toggle menu">
@@ -90,7 +96,7 @@
                     onclick={() => (sidebarOpen = false)}
                 >
                     {#if char.cutieMark}
-                        <img src={char.cutieMark} alt="" class="mini-cutie" />
+                        <img src={char.cutieMark.startsWith('/') ? char.cutieMark : `/${char.cutieMark}`} alt="" class="mini-cutie" />
                     {/if}
                     <div class="char-info">
                         <strong>{char.name}</strong>

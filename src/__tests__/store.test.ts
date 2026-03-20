@@ -541,7 +541,7 @@ describe('CharacterStore serialization', () => {
         c.description = 'A studious unicorn';
         c.origin = 'Unicorn';
         c.role = 'Spirit of Magic';
-        c.cutieMark = 'cutiemarks/star.svg';
+        c.cutieMark = '/cutiemarks/star.svg';
         c.languages = 'Pony, Dragon';
         c.movement = '40ft';
         c.diamondEssence = 'smarts';
@@ -568,7 +568,7 @@ describe('CharacterStore serialization', () => {
         expect(restored.description).toBe('A studious unicorn');
         expect(restored.origin).toBe('Unicorn');
         expect(restored.role).toBe('Spirit of Magic');
-        expect(restored.cutieMark).toBe('cutiemarks/star.svg');
+        expect(restored.cutieMark).toBe('/cutiemarks/star.svg');
         expect(restored.languages).toBe('Pony, Dragon');
         expect(restored.movement).toBe('40ft');
         expect(restored.diamondEssence).toBe('smarts');

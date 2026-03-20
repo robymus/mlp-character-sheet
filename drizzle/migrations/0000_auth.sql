@@ -19,7 +19,9 @@ CREATE TABLE IF NOT EXISTS accounts (
     token_type TEXT,
     scope TEXT,
     id_token TEXT,
-    session_state TEXT
+    session_state TEXT,
+    "oauth_token_secret" TEXT DEFAULT NULL,
+    "oauth_token" TEXT DEFAULT NULL
 );
 
 CREATE TABLE IF NOT EXISTS sessions (

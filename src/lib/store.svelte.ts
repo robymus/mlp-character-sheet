@@ -33,7 +33,7 @@ export class CharacterStore {
     movement = $state('');
     role = $state<Role>('');
     languages = $state('Pony');
-    cutieMark = $state('cutiemarks/random_choice.svg');
+    cutieMark = $state('/cutiemarks/random_choice.svg');
     earthPonyEssence = $state<'strength' | 'social'>('strength');
     adaptableEssence = $state<EssenceType>('strength');
     honestyEssence = $state<'strength' | 'speed' | 'smarts'>('strength');
@@ -344,7 +344,8 @@ export class CharacterStore {
         store.description = data.description ?? '';
         store.origin = data.origin ?? '';
         store.role = data.role ?? '';
-        store.cutieMark = data.cutieMark ?? 'cutiemarks/random_choice.svg';
+        const cm = data.cutieMark ?? '/cutiemarks/random_choice.svg';
+        store.cutieMark = cm.startsWith('/') ? cm : `/${cm}`;
         store.languages = data.languages ?? 'Pony';
         store.movement = data.movement ?? '';
         store.startingPoints = data.startingPoints ?? 12;
@@ -385,7 +386,7 @@ export class CharacterStore {
         this.description = '';
         this.origin = '';
         this.role = '';
-        this.cutieMark = 'cutiemarks/random_choice.svg';
+        this.cutieMark = '/cutiemarks/random_choice.svg';
         this.languages = 'Pony';
         this.movement = '';
         this.startingPoints = 12;
