@@ -11,5 +11,5 @@ database_id = "0253c31b-5615-45ed-978a-fad51aa8f33a"
 
 [observability]
 [observability.logs]
-enabled = false
+enabled = true
 invocation_logs = true
