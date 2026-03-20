@@ -96,7 +96,13 @@
                     onclick={() => (sidebarOpen = false)}
                 >
                     {#if char.cutieMark}
-                        <img src={char.cutieMark.startsWith('/') ? char.cutieMark : `/${char.cutieMark}`} alt="" class="mini-cutie" />
+                        <img
+                            src={char.cutieMark.startsWith('/')
+                                ? char.cutieMark
+                                : `/${char.cutieMark}`}
+                            alt=""
+                            class="mini-cutie"
+                        />
                     {/if}
                     <div class="char-info">
                         <strong>{char.name}</strong>

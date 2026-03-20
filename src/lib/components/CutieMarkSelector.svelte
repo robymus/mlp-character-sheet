@@ -45,20 +45,20 @@
 
 <!-- The trigger container -->
 {#if character.locked}
-<div class="cutie-mark-container">
-    <img id="current-cutie-mark" src={character.cutieMark} alt="Cutie Mark" />
-</div>
+    <div class="cutie-mark-container">
+        <img id="current-cutie-mark" src={character.cutieMark} alt="Cutie Mark" />
+    </div>
 {:else}
-<div
-    class="cutie-mark-container"
-    title="Click to change Cutie Mark"
-    onclick={openModal}
-    onkeydown={(e) => e.key === 'Enter' && openModal()}
-    role="button"
-    tabindex="0"
->
-    <img id="current-cutie-mark" src={character.cutieMark} alt="Cutie Mark" />
-</div>
+    <div
+        class="cutie-mark-container"
+        title="Click to change Cutie Mark"
+        onclick={openModal}
+        onkeydown={(e) => e.key === 'Enter' && openModal()}
+        role="button"
+        tabindex="0"
+    >
+        <img id="current-cutie-mark" src={character.cutieMark} alt="Cutie Mark" />
+    </div>
 {/if}
 
 <!-- The Modal -->
